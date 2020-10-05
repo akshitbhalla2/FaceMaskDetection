@@ -25,4 +25,4 @@ class FaceMaskModel(object):
         global session
         set_session(session)
         self.preds = self.loaded_model.predict(img)
-        return FaceMaskModel.CATEGORY_LIST[np.argmax(self.preds)]
+        return FaceMaskModel.CATEGORY_LIST[np.argmax(self.preds)], round(max(self.preds[0]), 4) 

@@ -22,9 +22,9 @@ class VideoCamera(object):
             fc = fr[y:y+h, x:x+w] 
 
             roi = cv2.resize(fc, (100, 100))
-            pred = model.predict_mask(roi[None])         
+            pred, conf = model.predict_mask(roi[None])         
 
-            cv2.putText(fr, pred, (x, y), font, 1, (255, 255, 0), 2)
+            cv2.putText(fr, pred + " " + str(conf), (x, y), font, 1, (255, 255, 0), 2)
             cv2.rectangle(fr, (x, y),(x+w, y+h), (255, 0, 0), 2)
 
         _, jpeg = cv2.imencode('.jpg', fr)
